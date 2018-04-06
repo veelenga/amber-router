@@ -34,8 +34,8 @@ module Amber::Router
         subtree
       else
         case
-        when segment.starts_with? ':'
-          new_segment = VariableSegment(T).new(segment)
+        when segment =~ /:(.*)/
+          new_segment = VariableSegment(T).new(segment, $1)
         when segment.starts_with? '*'
           new_segment = GlobSegment(T).new(segment)
         else

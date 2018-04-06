@@ -1,15 +1,17 @@
 module Amber::Router
   class VariableSegment(T) < Segment(T)
+    getter parameter
+
+    def initialize(segment : String, @parameter : String)
+      super(segment)
+    end
+
     def match?(segment : String) : Bool
       true
     end
 
     def parametric? : Bool
       true
-    end
-
-    def parameter : String
-      segment[1..-1]
     end
   end
 end
